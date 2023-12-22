@@ -1,6 +1,6 @@
 <?php
     
-	$link = mysqli_connect("localhost", "kadr_samdu.uz_User", "Kadrjon11$", "kadr_samdu.uz_DB");
+	$link = mysqli_connect("localhost", "root", "", "kadr_samdu.uz_DB");
 
 	if (!$link) {
 
@@ -22,8 +22,8 @@
         function __construct(){
             $this->url = "http://kadr.samdu.uz/";
             $this->host = "localhost";
-            $this->user_db = "kadr_samdu.uz_User";
-            $this->password = "Kadrjon11$";
+            $this->user_db = "root";
+            $this->password = "";
             $this->db = "kadr_samdu.uz_DB";            
             $this->allow_upload = array('png','gif','jpg','pdf','doc','docx','xls','xlsx');
             $this->link = mysqli_connect($this->host, $this->user_db, $this->password, $this->db);

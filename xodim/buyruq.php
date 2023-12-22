@@ -2,6 +2,7 @@
 include_once 'ximoya.php';
 $_SESSION['page'] = 114;
 $_SESSION['_csrf']=md5(time());
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +13,7 @@ $_SESSION['_csrf']=md5(time());
 <?php include_once 'header.php'; ?>
 	<main class="app-content">
 		<div class="app-title">
-			<div>
+			<div>       
 				<h1><i class="fa fa-th-list"></i> Buyruqlar </h1>
 				<p></p>
 			</div>
@@ -23,6 +24,29 @@ $_SESSION['_csrf']=md5(time());
 		
 		<div class="row">
 			<div class="col-md-12">
+
+				<div class="form-group col-md-3">
+					<label class="control-label">Kadrlar bo'limni tanlang</label>
+						<select class="form-control" id="year" name="bulim_name_list" onchange="Buyruq()">
+							<option value="-1">~ Tanlang ~</option>
+							<?
+								$currentYear = date("Y");
+
+								$allYears = [];
+								
+								for ($year = 2023; $year <= $currentYear; $year += 1) {
+									$allYears[] = $year;
+								}
+								$n = count($allYears);
+								for($i = 0; $i < $n; $i++) {
+									?>
+										<option value="<?=$allYears[$i]?>"><?=$allYears[$i]?></option>
+									<?
+								}
+							?>
+						</select>
+				</div>
+
 				<div class="tile">
 					<div class="tile-body">
 						<div class="table-responsive" id="displaytable">
@@ -190,6 +214,24 @@ $_SESSION['_csrf']=md5(time());
       		}
       		
       	}
+
+		function Buyruq() {
+			let year = $("#year").val();
+			
+			$.ajax({
+				url: "buyruq-table.php",
+				type: "POST",
+				data:{
+					date:year,
+				},
+				success:function(data) {
+					$("#displaytable").html(data)
+				},
+				error:function(xhr) {
+					swal("Bajarilmadi", "Internetdan uzilish ro'y berdi", "error");		
+				}
+			});  
+		}
       </script>
     </body>
     </html>

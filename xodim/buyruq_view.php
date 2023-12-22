@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
   <main class="app-content">
     <div class="app-title">
       <div>
-        <h1><i class="fa fa-th-list"></i> <?=$l['name']?></h1>
+        <h1><i class="fa fa-th-list"></i> <?=$l['braqam']?></h1>
         
       </div>
       
@@ -63,6 +63,18 @@ if (isset($_GET['id'])) {
            $sanoq = 0;
 
            while($kk = mysqli_fetch_assoc($pr)){
+
+              // Get xodim name 
+              $xodim_id = $kk['xodim_id'];
+              $xodimSql = mysqli_query($link, "SELECT * FROM xodimlar WHERE id=$xodim_id");
+              $xodim = mysqli_fetch_assoc($xodimSql);
+
+              $xodimIsm = $xodim['ism'];
+              $xodimFamiliya = $xodim['familiya'];
+              $xodimSharf = $xodim['otch'];
+
+              $xodimNomi = $xodimFamiliya." ".$xodimIsm." ".$xodimSharf;
+
              $sanoq++;
              $pr_id = $kk['buyruq_id'];
              $pr2 = mysqli_query($link,"SELECT * FROM buyruq WHERE id='$pr_id'");
@@ -78,7 +90,8 @@ if (isset($_GET['id'])) {
 
              $filename = $prikaz['braqam'].'('.$prikaz['sana'].').docx';
              $phpWord->save('buyruqlar/'.$filename);
-             ?>
+
+            ?>
              <tr >
               <td><?=$sanoq?></td>
 

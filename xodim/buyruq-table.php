@@ -10,9 +10,9 @@
     </thead>
     <tbody>
     <?php
-        $year = $_POST['date'];
+        $year = intval($_POST['date']);
         
-        $sql = mysqli_query($link,"SELECT * FROM buyruq WHERE yil=$year order by sana desc");    
+        $sql = mysqli_query($link,"SELECT * FROM buyruq WHERE YEAR(sana)=$year order by sana desc");    
     $i=0;                      
     while($fetch = mysqli_fetch_assoc($sql)){
         $i++;

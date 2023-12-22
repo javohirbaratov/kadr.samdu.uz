@@ -1,0 +1,81 @@
+/*Laptop window screen 1024 */
+@media screen and (max-width: 1024px) {
+}
+/*laptop window screen 860 */
+@media screen and (max-width: 860px) {
+}
+/*Table window screen 728 */
+@media screen and (max-width: 728px) {
+  .container,
+  .container.sidebar-toggle {
+    padding: 0 10px;
+  }
+  header .container,
+  header .container.sidebar-toggle {
+    padding: 0;
+  }
+  .site-header__sidebar {
+    transition: left 0.5s ease-in-out;
+    left: -100%;
+    box-shadow: 5px 0 10px rgb(0 0 0 / 41%);
+  }
+  header.sidebar-toggle .site-header__sidebar {
+    left: 0;
+    width: 260px;
+  }
+  header.sidebar-toggle .site-header__sidebar .btn-text {
+    display: unset;
+  }
+  .site-header__outer {
+    border-radius: 0;
+  }
+  .site-header__sidebar--top .btn-close {
+    display: block;
+  }
+  .site-header__outer .input-group.faild {
+    position: fixed;
+    top: 5px;
+    left: 0;
+    right: 0;
+    margin-left: 10px;
+    height: 40px;
+    z-index: 2;
+  }
+
+  .input-group .append.hide {
+    display: none;
+  }
+  .sidebar-back {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.253);
+  }
+  .page-header__nav {
+    display: none;
+  }
+}
+/*Laptop window screen 600 */
+@media screen and (max-width: 600px) {
+  .dropdown-btn.btn-light {
+    background: none;
+  }
+  .dropdown-btn .user-icon {
+    margin: 0;
+  }
+  .dropdown-btn .btn-text {
+    display: none;
+  }
+}
+/*Mobile L window screen 425 */
+@media screen and (max-width: 425px) {
+}
+/*Mobile M window screen 375 */
+@media screen and (max-width: 375px) {
+}
+/*Mobile S window screen 320 */
+@media screen and (max-width: 320px) {
+}

@@ -5,13 +5,15 @@ error_reporting(0); ?>
   <thead>
     <tr>
      <th>No</th>
-     <th>F.I.O</th>
      <th>Kadr bo'limi</th>
      <th>Bo'lim nomi</th>
      <th>Bo'linma nomi</th>
-     <th>Shtat</th>
-     <th>Faoliyat turi</th>
      <th>Lavozim</th>
+     <th>F.I.O</th> 
+     <th>Faoliyat turi</th>
+     <th>Shtat</th>
+     <th>Ma'lumot</th>
+     <th>Mutaxassis</th>
 
 
      <th>Amallar</th>
@@ -41,7 +43,21 @@ error_reporting(0); ?>
       $faoliyat = filter($_GET['faoliyat']);
       $sql .= " and urindosh='$faoliyat'";
     }
-    $sql = mysqli_query($link,$sql);                          
+
+
+    if($_GET['shtat']>0) {
+      $shtat = filter($_GET['shtat']);
+      $sql .= " and shtat=$shtat";
+    }
+    
+    if(isset($_GET['malumot']) AND $_GET['malumot'] != "") {
+      $malumot = filter($_GET['malumot']);
+      $sql .= " and malumot='$malumot'";
+    }
+    
+    $sql = mysqli_query($link,$sql);   
+    $fetch = mysqli_fetch_assoc($sql);
+                     
   }
   else{
     if(isset($_GET['kadr_bulim_id'])){
@@ -99,14 +115,16 @@ error_reporting(0); ?>
 
                           ?>
                           <tr id="tr<?=$fetch['id']?>">
-                           <td><?=$i?></td>
-                           <td><?=strtoupper($xodim['familya'])?> <?=strtoupper($xodim['ism'])?> <?=strtoupper($xodim['otch'])?></td>
-                           <td><?=strtoupper($kadrlarbulimi['name'])?></td>
-                           <td><?=strtoupper($bulimlar['name'])?></td>
-                           <td><?=strtoupper($kafedralar['name'])?></td>
-                           <td><?=strtoupper($fetch['shtat'])?></td>
-                           <td><?=strtoupper($fetch['urindosh'])?></td>
-                           <td><?=strtoupper($lavozimlar['lavozim'])?></td>
+                            <td><?=$i?></td>
+                            <td><?=strtoupper($kadrlarbulimi['name'])?></td>
+                            <td><?=strtoupper($bulimlar['name'])?></td>
+                            <td><?=strtoupper($kafedralar['name'])?></td>
+                            <td><?=strtoupper($lavozimlar['lavozim'])?></td>
+                            <td><?=strtoupper($xodim['familya'])?> <?=strtoupper($xodim['ism'])?> <?=strtoupper($xodim['otch'])?></td>
+                            <td><?=strtoupper($fetch['urindosh'])?></td>
+                            <td><?=strtoupper($fetch['shtat'])?></td>
+                            <td><?=strtoupper($fetch['malumot'])?></td>
+                            <td><?=strtoupper($fetch['mutaxassis'])?></td>
 
 
                            <td><a href="xodim-view.php?id=<?=$fetch['user_id']?>" class="btn btn-success"><i class="fa fa-eye"></i> Batafsil</a><!--<a href="obektivka-generate/index.php?id=<?=$fetch['xodim_id']?>" class="btn btn-default"><i class="fa fa-user"></i> Obektivka</a><a href="tinglovchi-update.php?id=<?=$fetch['id']?>" class="btn btn-primary"><i class="fa fa-pencil"></i> Tahrirlash</a><button class="btn btn-danger" onClick="udalit(<?=$fetch['id']?>)"><i class="fa fa-trash"></i> O'chirish</button>--></td>

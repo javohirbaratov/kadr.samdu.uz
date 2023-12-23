@@ -84,8 +84,30 @@
                 	<option value="tashqi">Soatbay</option>                  	
                 </select>
               </div>
+			  <div class="form-group col-md-3">
+                <label class="control-label">Shtat</label>
+                <select class="form-control" id="shtat" name="shtat" onchange="filter(4)">
+                	<option value="-1">~ Barchasi ~</option>
+                	<option value="0.25">0.25</option>
+                	<option value="0.5">0.5</option>
+                	<option value="0.75">0.75</option>
+                	<option value="1">1</option>                  	
+                </select>
+              </div>
+			  <div class="form-group col-md-3">
+                <label class="control-label">Ma'lumot</label>
+                <select class="form-control" id="malumot" name="malumot" onchange="filter(5)">
+                	<option value="">~ Barchasi ~</option>
+                	<option value="urta">O'rta ma'lumotli</option>
+                	<option value="urta maxsus">O'rta maxsus</option>
+                	<option value="tugallanmagan oliy">Tugallanmagan oliy</option>                  	
+                	<option value="bakalavr">Bakalavr</option>                  	
+                	<option value="magistr">Magistr</option>
+                	<option value="oliy">Oliy</option>
+                </select>
+              </div>
               <div class="form-group col-md-4 align-self-end">
-                <button class="btn btn-primary" type="button" onclick="filter(3)"><i class="fa fa-fw fa-lg fa-search"></i>Filtrlash</button>
+                <button class="btn btn-primary" type="button" onclick="filter(5)"><i class="fa fa-fw fa-lg fa-search"></i>Filtrlash</button>
               </div>
             </form>
           </div>
@@ -117,12 +139,17 @@
       $('#bulim_name_list').select2();
       $('#lavozim_id').select2();
       $('#bulim_id').select2();
+
       function filter(f){
+
       	$('#loader').css("display","flex");
       	let kb = $('#bulim_name_list').val();
       	let bulim_id = $('#bulim_id').val();
       	let lavozim_id = $('#lavozim_id').val();
       	let faoliyat = $('#faoliyat').val();
+      	let shtat = $('#shtat').val();
+      	let malumot = $('#malumot').val();
+		console.log(malumot);
       	if (Number(kb)>0 && f==1){
       		$.ajax({
 	      		url: "get-bulim-options.php",
@@ -153,6 +180,7 @@
 	      		}
 	      	});
       	}
+
       	if (Number(bulim_id)>0 && f==2){
       		$.ajax({
 	      		url: "get-lavozim-options.php",
@@ -169,11 +197,12 @@
 	      		}
 	      	});
       	}
+
       	$.ajax({
       		url: "get-xodim-qabul-table.php",
       		type: "GET",
       		data:{
-      			kb:kb,bulim_id:bulim_id,lavozim_id:lavozim_id,faoliyat:faoliyat,action:"filter",
+      			kb:kb,bulim_id:bulim_id,lavozim_id:lavozim_id,faoliyat:faoliyat,shtat: shtat, malumot: malumot,action:"filter",
       		},
       		success:function(data){
       			$('#loader').css("display","none");

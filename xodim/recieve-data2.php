@@ -72,13 +72,13 @@
                         ?>
                         <tr>
                         <td><?=$fetch['id']?></td>
-                        <td><img src="../bot/uploads/<?=$fetch['rasm']?>" width="50"></td>
+                        <td></td>
                         <td><?=$fetch['familya']?> <?=$fetch['ism']?> <?=$fetch['otch']?></td>
                          <td><?=$fetch['nomer']?></td>
                          
                           <td><?=$fetch['jshir']?></td>
                           <td><?=$fetch['telefon']?></td>
-                          <td><a href ="../bot/uploads/<?=$fetch['passport']?>" >Pasport</a></td>
+                          <td></td>
                           <td><?=$bulim['name']?></td>
                           <td><?=$kafedra['name']?></td>
                           <td><?=$lavozim['lavozim']?></td>
